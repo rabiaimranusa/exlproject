@@ -10,10 +10,10 @@ public class LoginPage {
   
   WebDriver driver;
   
-  public LoginPage(WebDriver driver) { this.driver = driver; }
+  public LoginPage(WebDriver driver) { 
+	this.driver = driver; }
   
-  @FindBy(how = How.XPATH, using = "//*[@id=\"username\"]") WebElement
-  USER_NAME_ELEMENT;
+  @FindBy(how = How.XPATH, using = "//*[@id=\"username\"]") WebElement USER_NAME_ELEMENT;
   
   @FindBy(how = How.XPATH, using = "//*[@id=\"password\"]") WebElement PASSWORD_ELEMENT;
   
