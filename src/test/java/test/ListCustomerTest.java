@@ -1,31 +1,40 @@
 package test;
 
+import java.io.IOException;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import page.AddCustomerPage;
 import page.DashboardPage;
+import page.ListCustomerPage;
 import page.LoginPage;
 import util.BrowserFactory;
 
-public class AddCustomerTest {
-
+public class ListCustomerTest {
 	WebDriver driver;
 	@Test
-	public void userShouldBeAbleToCreatNewCustomer() throws InterruptedException {
+	public void userShouldBeAbleToValidateNewCustomer() throws InterruptedException  {
 		
 		driver = BrowserFactory.init();
 		
+		// in POM we creat the object by using pagefactory.
+		
+		//Loginpage object.
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		loginPage.insertUserName("demo@techfios.com");
 		loginPage.insertPassword("abc123");
 		loginPage.clickSigninButton();
+		
+		// Dashboardpage object.
 	    DashboardPage dashboardpage = PageFactory.initElements(driver,DashboardPage.class);
 		dashboardpage.validateDashboardPage("Dashboard");
 		dashboardpage.clickCustomerMenuElement();
 		dashboardpage.clickAddCstomerMenuElement();
 		
+		//Addcustomerpage object.
 		AddCustomerPage addCustomerPage = PageFactory.initElements(driver, AddCustomerPage.class);
 		addCustomerPage.validateContactPage("Add Contact");
 		addCustomerPage.insertFullName("Rabia");
@@ -41,10 +50,16 @@ public class AddCustomerTest {
 		
 		dashboardpage.clickListCustomerMenu();
 		
-		//this method not working 
-		addCustomerPage.validateInsertedcustomerAndDelete();
-		
-		addCustomerPage.clickOkButtonToDelete();
-	}
+		//Listcustomerpage object.
+		ListCustomerPage listcustomer = PageFactory.initElements(driver, ListCustomerPage.class);
+		listcustomer.validateAddcustomerHeader("Add Customer");
 	
+		listcustomer.validateinsertedcustomer();
+		
+	
+	}
+
+	
+
+
 }
